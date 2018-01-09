@@ -31,11 +31,12 @@ class ReceiverPreferences {
 private:
 	std::map<IPackageReceiver*, double> probabilities;
 public:
-	std::map<IPackageReceiver*, double> getProbabiliteis();
-	void setProbabilities(std::map<IPackageReceiver*, double>);
+	std::map<IPackageReceiver*, double> getPreferences();
+	void setPreferences(std::map<IPackageReceiver*, double>);
 	void addReceiver(IPackageReceiver*);
 	void addReceiverWithProbability(IPackageReceiver*, double);
-	IPackageReceiver* drawReceiver();
+	void removeReceiver(IPackageReceiver*);
+	IPackageReceiver* drawReceiver(double);
 	std::pair<IPackageReceiver*, double>* view();
 }; // ReceiverPreferences
 
