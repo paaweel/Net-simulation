@@ -8,10 +8,9 @@ using ElementID = int;
 class Package {
 private:
 	ElementID id;
-	static int packageCounter = 0;
+	static ElementID packageCounter = 0;
 public:
 	Package() { id = packageCounter++; }
-	Package(ElementID number) : id(number) {packageCounter++;} // zakladamy ze numery ID w pliku sa unikalne
 	ElementID getId() { return id; }
 }; // Package
 
