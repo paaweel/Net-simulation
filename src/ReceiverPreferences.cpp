@@ -19,17 +19,11 @@ IPackageReceiver* ReceiverPreferences::drawReceiver() {
     return key[d(gen)];
 }
 
-void ReceiverPreferences::addReceiver(IPackageReceiver*  newReceiver) {
+void ReceiverPreferences::addReceiver(IPackageReceiver* newReceiver) {
     probabilities[newReceiver] = 0;
     for (auto & iterator : probabilities) {
         iterator.second = 1.0/probabilities.size();
     }
-}
-
-ReceiverPreferences::ReceiverPreferences() {
-    std::random_device rd;
-    std::mt19937 _gen(rd);
-    gen = _gen;
 }
 
 std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() {

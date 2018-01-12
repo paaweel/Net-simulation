@@ -17,8 +17,9 @@ public:
     ReceiverPreferences receiverPreferences;
 
     //PackageSender(ElementID); //what's the purpose of this constructor?
+
     void sendPackage() {
-        receiverPreferences.drawReceiver()->receivePackage(sendingBuffer.[0]);
+        receiverPreferences.drawReceiver()->receivePackage(sendingBuffer[0]);
         sendingBuffer.erase(sendingBuffer.begin());
     }
     //Package*

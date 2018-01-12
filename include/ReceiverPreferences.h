@@ -12,9 +12,9 @@
 class ReceiverPreferences {
 private:
     std::map<IPackageReceiver*, double> probabilities;
-    static std::mt19937 gen;
+    std::mt19937 gen;
 public:
-    ReceiverPreferences();
+    ReceiverPreferences() : gen(std::random_device()()){}
     std::map<IPackageReceiver*, double> getPreferences() {
         return probabilities;
     }
