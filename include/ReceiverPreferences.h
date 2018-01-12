@@ -5,17 +5,26 @@
 #ifndef NET_SIMULATION_RECEIVERPREFERENCES_H
 #define NET_SIMULATION_RECEIVERPREFERENCES_H
 
+#include <random>
+#include "Net_Simulation.h"
+
+
 class ReceiverPreferences {
 private:
     std::map<IPackageReceiver*, double> probabilities;
+    static std::mt19937 gen;
 public:
-    const std::map<IPackageReceiver*, double> getPreferences();
+    ReceiverPreferences();
+    std::map<IPackageReceiver*, double> getPreferences() {
+        return probabilities;
+    }
     void setPreferences(std::map<IPackageReceiver*, double>);
     void addReceiver(IPackageReceiver*);
     void addReceiverWithProbability(IPackageReceiver*, double);
     void removeReceiver(IPackageReceiver*);
-    IPackageReceiver* drawReceiver(double);
-    std::pair<IPackageReceiver*, double>* view();
+    IPackageReceiver* drawReceiver(); //parameter double is not required, yet
+    //returning vector, instead of an array
+    std::vector<std::pair<IPackageReceiver*, double>> view();
 }; // ReceiverPreferences
 
 
