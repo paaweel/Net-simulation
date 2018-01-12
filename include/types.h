@@ -8,11 +8,12 @@ using ElementID = int;
 class Package {
 private:
 	ElementID id;
-	static ElementID packageCounter = 0;
+	static ElementID packageCounter; //has to be initialized outside of class def
 public:
 	Package() { id = packageCounter++; }
 	ElementID getId() { return id; }
 }; // Package
+
 
 enum class ReceiverType { WORKER, STOREHOUSE };
 enum class QueueType { LIFO, FIFO };
