@@ -9,6 +9,7 @@
 IPackageReceiver* ReceiverPreferences::drawReceiver() {
     std::vector <double> val;
     std::vector <IPackageReceiver*> key;
+
     for (auto m : probabilities) {
         val.push_back(m.second);
         key.push_back(m.first);
