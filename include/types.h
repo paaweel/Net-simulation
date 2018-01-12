@@ -8,9 +8,12 @@ using ElementID = int;
 class Package {
 private:
 	ElementID id;
-	static ElementID packageCounter; //has to be initialized outside of class def
+	static ElementID packageCounter;
 public:
-	Package() { id = packageCounter++; }
+	Package() {
+		static ElementID packageCounter = 0;
+		id = packageCounter++;
+	}
 	ElementID getId() { return id; }
 }; // Package
 
