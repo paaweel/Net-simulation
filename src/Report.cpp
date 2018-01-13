@@ -6,7 +6,6 @@
  */
 
 #include "../include/Report.h"
-#include "Report.h"
 
 
 SpecificTurnsReportNotifier::SpecificTurnsReportNotifier(std::set<Time> _turns)
