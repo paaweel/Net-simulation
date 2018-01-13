@@ -5,6 +5,27 @@
 #include <random>
 #include "../include/ReceiverPreferences.h"
 
+void redistributeProbabilityUniformly(std::map<IPackageReceiver*, double> &probabilities) {
+    for (auto & iterator : probabilities) {
+        iterator.second = 1.0/probabilities.size();
+    }
+};
+
+void redistributeProbabilityProportionally (std::map<IPackageReceiver*, double> &probabilities, double prob = 0) {
+    double total = 0.0;
+    for (auto & iterator : probabilities) {
+        total += iterator.second;
+    }
+    if (total <= 0) {
+        redistributeProbabilityUniformly(probabilities);
+    }
+    else {
+        double proportion = (1.0-prob)/total;
+        for (auto & iterator : probabilities) {
+            iterator.second *= proportion;
+        }
+    }
+};
 
 IPackageReceiver* ReceiverPreferences::drawReceiver() {
     std::vector <double> val;
@@ -20,10 +41,8 @@ IPackageReceiver* ReceiverPreferences::drawReceiver() {
 }
 
 void ReceiverPreferences::addReceiver(IPackageReceiver* newReceiver) {
-    probabilities[newReceiver] = 0;
-    for (auto & iterator : probabilities) {
-        iterator.second = 1.0/probabilities.size();
-    }
+    probabilities[newReceiver] = 0.2;
+    redistributeProbabilityProportionally(probabilities);
 }
 
 std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() {
@@ -37,7 +56,31 @@ std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() {
 
 void ReceiverPreferences::removeReceiver(IPackageReceiver * receiver) {
     probabilities.erase(receiver);
-    for (auto & iterator : probabilities) {
-        iterator.second = 1.0/probabilities.size();
+    redistributeProbabilityProportionally(probabilities);
+}
+
+bool isProper(const std::map<IPackageReceiver*, double> &probabilities) {
+    double sum = 0.0;
+    for (const auto & iterator : probabilities) {
+        if (iterator.second < 0 || iterator.second > 1)
+            return false;
+        sum += iterator.second;
+    }
+
+    return sum <= 1.0;
+};
+
+void ReceiverPreferences::setPreferences(std::map<IPackageReceiver *, double> newProbabilities) {
+    if(isProper(newProbabilities))
+        probabilities = newProbabilities;
+}
+
+void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * rec, double prob) {
+    if (prob > 0.0 || prob <= 1.0) {
+        redistributeProbabilityProportionally(probabilities, prob);
+        probabilities[rec] = prob;
+    } else {
+        probabilities[rec] = prob;
+        redistributeProbabilityUniformly(probabilities);
     }
 }
