@@ -7,30 +7,53 @@
 #include "../include/ramp.h"
 #include "../include/StoreHouse.h"
 
-
-TEST(ReceiverPreferences, sumEqualsOne) {
-
+TEST(ReceiverPreferences, sumEqualsOneWhenAddingNew) {
     auto s0 = std::make_shared<StoreHouse> (0),
             s1 = std::make_shared<StoreHouse> (1),
             s2 = std::make_shared<StoreHouse> (2);
 
-    auto r0 = std::make_shared<Ramp> (3,1),
-            r1 = std::make_shared<Ramp> (4,1);
     ReceiverPreferences rp;
     rp.addReceiver(s0.get());
     rp.addReceiver(s1.get());
-    double sum = 0;
+    double sum = 0.0;
     auto prob = rp.getPreferences();
     for (auto m : prob) {
         sum += m.second;
+        std::cout << m.second << " " << sum << std::endl;
     }
-    ASSERT_EQ(sum, 1.0);
+    EXPECT_DOUBLE_EQ(sum, 1.0);
     rp.addReceiver(s2.get());
-    sum = 0;
+    sum = 0.0;
     prob = rp.getPreferences();
     for (auto m : prob) {
         sum += m.second;
+        std::cout << m.second << " " << sum << std::endl;
     }
-    ASSERT_EQ(sum, 1.0);
+    EXPECT_DOUBLE_EQ(sum, 1.0);
 }
 
+TEST(ReceiverPreferences, SumEqualsOneWhenAddingWithP) {
+    auto s0 = std::make_shared<StoreHouse> (0),
+            s1 = std::make_shared<StoreHouse> (1),
+            s2 = std::make_shared<StoreHouse> (2);
+
+    ReceiverPreferences rp;
+    rp.addReceiver(s0.get());
+    rp.addReceiverWithProbability(s1.get(),0.3);
+    double sum = 0.0;
+    auto prob = rp.getPreferences();
+    for (auto m : prob) {
+        sum += m.second;
+        std::cout << m.second << " " << sum << std::endl;
+    }
+    EXPECT_DOUBLE_EQ(sum, 1.0);
+    rp.addReceiverWithProbability(s2.get(),0.5);
+    sum = 0.0;
+    prob = rp.getPreferences();
+    for (auto m : prob) {
+        sum += m.second;
+        std::cout << m.second << " " << sum << std::endl;
+    }
+    EXPECT_DOUBLE_EQ(sum, 1.0);
+
+}
