@@ -14,9 +14,11 @@ Worker::Worker(ElementID id_, TimeOffset processingDuration_, IPackageQueue* que
 	queue = queue_;
 }
 
-void Worker::receivePackage(Package)
+void Worker::receivePackage(Package package_)
 {
-	//currentlyProcessedPackage.push_back(Package); // ?
+	queue->push(package_);
+	//if (queue->getQueueType == QueueType::FIFO)
+		//currentlyProcessedPackage.push_back(package_) ??
 }
 
 Package* Worker::viewDepot()
