@@ -25,6 +25,8 @@ public:
     TimeOffset getDeliveryInterval() {
         return deliveryInterval;
     }
+
+    ElementID getId() {return id;};
 };
 
 

@@ -8,7 +8,7 @@
 #ifndef PACKAGEQUEUE_H_
 #define PACKAGEQUEUE_H_
 
-#include "Net_simulation.h"
+#include "../include/Net_simulation.h"
 #include <deque>
 #include <functional>
 

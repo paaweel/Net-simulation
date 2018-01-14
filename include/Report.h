@@ -23,7 +23,7 @@ private:
 	std::set<Time> turns;
 public:
 	SpecificTurnsReportNotifier(std::set<Time>);
-	bool shouldGenerateReport(Time);
+	bool shouldGenerateReport(Time) override;
 };
 
 class IntervalReportNotifier : public IReportNotifier
@@ -32,7 +32,7 @@ private:
 	TimeOffset interval;
 public:
 	IntervalReportNotifier(TimeOffset);
-	bool shouldGenerateReport(Time);
+	bool shouldGenerateReport(Time) override;
 };
 
 #endif /* REPORT_H_ */
