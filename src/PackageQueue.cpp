@@ -1,5 +1,9 @@
 // PackageQueue.cpp
 
+
+#include "types.h"
+#include "PackageQueue.h"
+
 PackageQueue::PackageQueue(QueueType type)
 {
 	PackageQueueType = type;
