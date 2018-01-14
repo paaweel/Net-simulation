@@ -13,7 +13,7 @@ void redistributeProbabilityUniformly(std::map<IPackageReceiver*, double> &proba
 
 void redistributeProbabilityProportionally (std::map<IPackageReceiver*, double> &probabilities, double prob = 0) {
     double total = 0.0;
-    for (auto & iterator : probabilities) {
+    for (const auto & iterator : probabilities) {
         total += iterator.second;
     }
     if (total <= 0) {
@@ -75,12 +75,17 @@ void ReceiverPreferences::setPreferences(std::map<IPackageReceiver *, double> ne
         probabilities = newProbabilities;
 }
 
-void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * rec, double prob) {
+void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * newReceiver, double prob) {
     if (prob > 0.0 || prob <= 1.0) {
-        redistributeProbabilityProportionally(probabilities, prob);
-        probabilities[rec] = prob;
+        if (!probabilities.empty()){
+            redistributeProbabilityProportionally(probabilities, prob);
+            probabilities[newReceiver] = prob;
+        } else {
+            probabilities[newReceiver] = 1.0;
+        }
+
     } else {
-        probabilities[rec] = prob;
+        probabilities[newReceiver] = prob;
         redistributeProbabilityUniformly(probabilities);
     }
 }
