@@ -84,3 +84,13 @@ void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * rec, dou
         redistributeProbabilityUniformly(probabilities);
     }
 }
+
+bool ReceiverPreferences::hasEmptyConnection()
+{
+	for(auto iterator : probabilities)
+	{
+		if(iterator.first == nullptr) return true;
+	}
+
+	return false;
+}

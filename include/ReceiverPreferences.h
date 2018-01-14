@@ -25,6 +25,9 @@ public:
     IPackageReceiver* drawReceiver(); //parameter double is not required, yet
     //returning vector, instead of an array
     std::vector<std::pair<IPackageReceiver*, double>> view();
+
+    bool hasEmptyConnection();
+
 }; // ReceiverPreferences
 
 
