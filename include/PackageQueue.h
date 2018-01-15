@@ -16,15 +16,17 @@ class PackageQueue : public IPackageQueue {
 private:
 	QueueType PackageQueueType; //?
 	std::deque<Package> deque;
-	std::function<Package()> _popFunction;
+	//std::function<Package()>
+    //temporary solution
+    std::function<Package(std::deque<Package>&)>_popFunction;
 public:
-	PackageQueue(QueueType);
-	void push(Package);
-	Package pop();
-	Package* view();
-	QueueType getQueueType();
-	bool isEmpty();
-	int size();
+    explicit PackageQueue(QueueType);
+	void push(Package) override;
+	Package pop() override;
+	Package* view() override;
+	QueueType getQueueType() override;
+	bool empty() override ;
+	int size() override;
 };
 
 
