@@ -12,7 +12,7 @@
 #include "Net_simulation.h"
 #include "types.h"
 
-class Worker : public IPackageReceiver {
+class Worker : public IPackageReceiver, public PackageSender {
 private:
 	ElementID id;
 	TimeOffset processingDuration;
@@ -28,6 +28,8 @@ public:
 	Time getPackageProcessingStartTime();
 	ReceiverType getReceiverType() override;
 	ElementID getID()override;
+	//void sendPackage() override;
+	//std::vector<Package> viewSendingBuffer() override;
 };
 
 

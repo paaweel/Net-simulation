@@ -50,3 +50,14 @@ ElementID Worker::getID()
 {
 	return id;
 }
+/*
+void sendPackage()
+{
+	
+}
+	
+std::vector<Package> viewSendingBuffer()
+{
+	
+}
+*/
