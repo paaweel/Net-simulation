@@ -22,13 +22,13 @@ private:
 	std::vector<Package> currentlyProcessedPackage;
 public:
 	Worker(ElementID, TimeOffset, IPackageQueue*);
-	void receivePackage(Package);
-	Package* viewDepot();
+	void receivePackage(Package) override;
+	Package* viewDepot() override;
 	void doWork();
 	TimeOffset getProcessingDuration();
 	Time getPackageProcessingStartTime();
-	ReceiverType getReceiverType();
-	ElementID getID();
+	ReceiverType getReceiverType() override;
+	ElementID getID()override;
 };
 
 

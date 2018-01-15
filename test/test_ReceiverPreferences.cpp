@@ -57,3 +57,21 @@ TEST(ReceiverPreferences, SumEqualsOneWhenAddingWithP) {
     EXPECT_DOUBLE_EQ(sum, 1.0);
 
 }
+
+TEST(ReceiverPreferences, addingWithProbability) {
+    auto s0 = std::make_shared<StoreHouse> (0),
+            s1 = std::make_shared<StoreHouse> (1),
+            s2 = std::make_shared<StoreHouse> (2);
+
+    ReceiverPreferences rp;
+
+    rp.addReceiverWithProbability(s0.get(), 0.3);
+
+    auto prob = rp.getPreferences();
+    EXPECT_DOUBLE_EQ(1.0, prob[s0.get()]);
+
+    rp.addReceiverWithProbability(s1.get(), 0.3);
+    prob = rp.getPreferences();
+    EXPECT_DOUBLE_EQ(0.7, prob[s0.get()]);
+    EXPECT_DOUBLE_EQ(0.3, prob[s1.get()]);
+}
