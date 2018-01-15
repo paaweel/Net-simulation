@@ -14,7 +14,7 @@
 
 class IPackageDepot {
 public:
-	virtual void push(Package package) = 0;
+	virtual void push(Package) = 0;
 	virtual bool empty() = 0;
 	virtual int size() = 0;
 	virtual Package* view() = 0;
