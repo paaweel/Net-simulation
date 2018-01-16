@@ -28,9 +28,7 @@ public:
 	TimeOffset getProcessingDuration();
 	Time getPackageProcessingStartTime();
 	ReceiverType getReceiverType() override;
-	ElementID getID()override;
-	//void sendPackage() override;
-	//std::vector<Package> viewSendingBuffer() override;
+	ElementID getID() const override;
 };
 
 

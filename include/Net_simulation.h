@@ -31,7 +31,7 @@ public:
 	virtual void receivePackage(Package) = 0;
 	virtual Package* viewDepot() = 0;
 	virtual ReceiverType getReceiverType() = 0;
-	virtual ElementID getID() = 0;
+	virtual ElementID getID() const  = 0;
 }; // IPackageReceiver
 
 #endif /* NET_SIMULATION_H_ */

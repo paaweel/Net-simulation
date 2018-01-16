@@ -90,9 +90,9 @@ void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * newRecei
     }
 }
 
-bool ReceiverPreferences::hasEmptyConnection()
+bool ReceiverPreferences::hasEmptyConnection() const
 {
-	for(auto iterator : probabilities)
+	for(const auto & iterator : probabilities)
 	{
 		if(iterator.first == nullptr) return true;
 	}

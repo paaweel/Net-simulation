@@ -19,15 +19,15 @@
 template<typename T>
 class Collection
 {
-private:
-	std::list<T> group;
 public:
+	std::list<T> group;
+
 	Collection(std::list<T> _group) : group(_group) {};
 
 
 	typename std::list<T>::iterator findById(std::list<T> &l, ElementID id)
 	{
-		return std::find_if(l.begin(), l.end(), [id](const T& cls){	return (cls.getId() == id);} );
+		return std::find_if(l.begin(), l.end(), [id](const T& cls){	return (cls.getID() == id);} );
 	};
 
 	void removeById(std::list<T>&l, ElementID id)
@@ -40,6 +40,8 @@ public:
 			l.erase(it);
 		}
 	};
+
+
 };
 
 typedef Collection<Ramp> RampCollection;

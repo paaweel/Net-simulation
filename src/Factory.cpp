@@ -41,7 +41,7 @@ bool Factory::isConsistent()
 {
 	auto itRamps = std::find_if(ramps.group.begin(), ramps.group.end(), [](const Ramp &cls) { return ( cls.receiverPreferences.hasEmptyConnection() ); } );
 
-	auto itWorkers = std::find_if(workers.group.begin(), workers.group.end(), [](const Ramp &cls) { return ( cls.receiverPreferences.hasEmptyConnection() ); } );
+	auto itWorkers = std::find_if(workers.group.begin(), workers.group.end(), [](const Worker &cls) { return ( cls.receiverPreferences.hasEmptyConnection() ); } );
 
 	if( (itRamps == ramps.group.end()) && (itWorkers == workers.group.end()) ) return true;
 	else return false;

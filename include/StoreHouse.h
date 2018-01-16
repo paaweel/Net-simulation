@@ -23,7 +23,7 @@ public:
     ReceiverType getReceiverType() override {
         return ReceiverType::STOREHOUSE;
     }
-    ElementID getID() override {
+    ElementID getID() const override {
         return id;
     }
 };

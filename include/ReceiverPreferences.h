@@ -26,7 +26,7 @@ public:
     //returning vector, instead of an array
     std::vector<std::pair<IPackageReceiver*, double>> view();
 
-    bool hasEmptyConnection();
+    bool hasEmptyConnection() const;
 
 }; // ReceiverPreferences
 

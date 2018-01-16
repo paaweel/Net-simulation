@@ -46,7 +46,7 @@ ReceiverType Worker::getReceiverType()
 	return ReceiverType::WORKER;
 }
 
-ElementID Worker::getID()
+ElementID Worker::getID() const
 {
 	return id;
 }

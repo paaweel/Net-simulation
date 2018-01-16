@@ -26,7 +26,7 @@ public:
         return deliveryInterval;
     }
 
-    ElementID getId() {return id;};
+    ElementID getID() const {return id;};
 };
 
 
