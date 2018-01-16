@@ -5,6 +5,10 @@
 #ifndef NET_SIMULATION_SIMULATE_H
 #define NET_SIMULATION_SIMULATE_H
 
-//void simulate(Factory, TimeOffset, )
+#include <functional>
+#include "Types.h"
+#include "Factory.h"
+
+void simulate(Factory factory, TimeOffset timeOffset, std::function(Factory&, TimeOffset) );
 
 #endif //NET_SIMULATION_SIMULATE_H
