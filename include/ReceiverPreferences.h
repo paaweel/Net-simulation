@@ -18,13 +18,13 @@ public:
     std::map<IPackageReceiver*, double> getPreferences() {
         return probabilities;
     }
-    void setPreferences(std::map<IPackageReceiver*, double>);
+    void setPreferences(const std::map<IPackageReceiver*, double> &);
     void addReceiver(IPackageReceiver*);
     void addReceiverWithProbability(IPackageReceiver*, double);
     void removeReceiver(IPackageReceiver*);
-    IPackageReceiver* drawReceiver(); //parameter double is not required, yet
+    IPackageReceiver* drawReceiver() const; //parameter double is not required, yet
     //returning vector, instead of an array
-    std::vector<std::pair<IPackageReceiver*, double>> view();
+    std::vector<std::pair<IPackageReceiver*, double>> view() const;
 
     bool hasEmptyConnection() const;
 

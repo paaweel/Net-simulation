@@ -27,11 +27,11 @@ void redistributeProbabilityProportionally (std::map<IPackageReceiver*, double> 
     }
 };
 
-IPackageReceiver* ReceiverPreferences::drawReceiver() {
+IPackageReceiver* ReceiverPreferences::drawReceiver() const {
     std::vector <double> val;
     std::vector <IPackageReceiver*> key;
 
-    for (auto m : probabilities) {
+    for (const auto &m : probabilities) {
         val.push_back(m.second);
         key.push_back(m.first);
     }
@@ -45,7 +45,7 @@ void ReceiverPreferences::addReceiver(IPackageReceiver* newReceiver) {
     redistributeProbabilityProportionally(probabilities);
 }
 
-std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() {
+std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() const {
     std::vector<std::pair<IPackageReceiver *, double>> pairs;
 
     for(const auto & p : probabilities) {
@@ -70,7 +70,7 @@ bool isProper(const std::map<IPackageReceiver*, double> &probabilities) {
     return sum <= 1.0;
 };
 
-void ReceiverPreferences::setPreferences(std::map<IPackageReceiver *, double> newProbabilities) {
+void ReceiverPreferences::setPreferences(const std::map<IPackageReceiver *, double> & newProbabilities) {
     if(isProper(newProbabilities))
         probabilities = newProbabilities;
 }
@@ -90,12 +90,11 @@ void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * newRecei
     }
 }
 
-bool ReceiverPreferences::hasEmptyConnection() const
-{
+bool ReceiverPreferences::hasEmptyConnection() const {
 	for(const auto & iterator : probabilities)
 	{
-		if(iterator.first == nullptr) return true;
+		if(iterator.first == nullptr)
+            return true;
 	}
-
 	return false;
 }
