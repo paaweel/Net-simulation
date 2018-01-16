@@ -11,6 +11,7 @@
 #include <vector>
 #include "Net_simulation.h"
 #include "types.h"
+#include "PackageSender.h"
 
 class Worker : public IPackageReceiver, public PackageSender {
 private:
