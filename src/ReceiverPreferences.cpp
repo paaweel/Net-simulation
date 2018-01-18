@@ -27,7 +27,7 @@ void redistributeProbabilityProportionally (std::map<IPackageReceiver*, double> 
     }
 };
 
-IPackageReceiver* ReceiverPreferences::drawReceiver() const {
+IPackageReceiver* ReceiverPreferences::drawReceiver() {
     if(probabilities.empty())
         return nullptr;
 
@@ -40,7 +40,7 @@ IPackageReceiver* ReceiverPreferences::drawReceiver() const {
     }
     std::discrete_distribution<int> d(val.begin(), val.end());
 
-    return key[0];//d(gen)];
+    return key[d(gen)];
 }
 
 void ReceiverPreferences::addReceiver(IPackageReceiver* newReceiver) {

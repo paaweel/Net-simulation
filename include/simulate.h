@@ -17,7 +17,7 @@ void simulate(Factory factory, TimeOffset timeOffset) {
     auto storeHouses = factory.getStorehouses();
     auto ramps = factory.getRamps();
 
-    for(int i = 0; i < 100; ++i) {
+    for(int i = 0; i < 20; ++i) {
         for (auto & r : ramps) {
             r->deliverGoods();
         }
@@ -33,7 +33,6 @@ void simulate(Factory factory, TimeOffset timeOffset) {
             std::cout << std::endl;
         }
     }
-
 }
 
 #endif //NET_SIMULATION_SIMULATE_H
