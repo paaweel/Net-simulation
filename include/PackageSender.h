@@ -19,8 +19,14 @@ public:
     //PackageSender(ElementID); //what's the purpose of this constructor?
 
     void sendPackage() {
-        receiverPreferences.drawReceiver()->receivePackage(sendingBuffer[0]);
-        sendingBuffer.erase(sendingBuffer.begin());
+        if(!sendingBuffer.empty()) {
+            receiverPreferences.drawReceiver()->receivePackage(sendingBuffer[0]);
+            sendingBuffer.erase(sendingBuffer.begin());
+        }
+    }
+
+    void addToBuffer(Package p) {
+        sendingBuffer.emplace_back(p);
     }
     //Package*
     std::vector<Package> viewSendingBuffer(){

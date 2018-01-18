@@ -10,15 +10,16 @@
 class StoreHouse : public IPackageReceiver {
 private:
     ElementID id;
-    IPackageDepot* packageDepot;
+    std::vector<Package> packageDepot;
 public:
     StoreHouse(ElementID _id) {
         id = _id;
     }
-    void receivePackage(Package) override {}
-    Package* viewDepot() override {
-        Package *p = new Package;
-        return p;
+    void receivePackage(Package p) override {
+        packageDepot.emplace_back(p);
+    }
+    std::vector<Package> viewDepot() override {
+        return packageDepot;
     }
     ReceiverType getReceiverType() override {
         return ReceiverType::STOREHOUSE;

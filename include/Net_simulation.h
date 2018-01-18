@@ -11,6 +11,8 @@
 #include <map>
 #include <utility>
 #include "types.h"
+#include <iostream>
+#include <vector>
 
 class IPackageDepot {
 public:
@@ -29,7 +31,7 @@ public:
 class IPackageReceiver {
 public:
 	virtual void receivePackage(Package) = 0;
-	virtual Package* viewDepot() = 0;
+	virtual std::vector<Package> viewDepot() = 0;
 	virtual ReceiverType getReceiverType() = 0;
 	virtual ElementID getID() const  = 0;
 }; // IPackageReceiver

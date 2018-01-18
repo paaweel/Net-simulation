@@ -19,14 +19,18 @@ public:
         id = _id;
         deliveryInterval = _to;
     }
-    void deliverGoods(Time) {
+    void deliverGoods() {
+        Package p;
+        addToBuffer(p);
         sendPackage();
     }
     TimeOffset getDeliveryInterval() {
         return deliveryInterval;
     }
 
-    ElementID getID() const {return id;};
+    ElementID getID() const {
+        return id;
+    }
 };
 
 

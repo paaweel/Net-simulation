@@ -21,9 +21,9 @@ private:
 	IPackageQueue* queue;
 	std::vector<Package> currentlyProcessedPackage;
 public:
-	Worker(ElementID, TimeOffset, IPackageQueue*);
+	Worker(ElementID, TimeOffset, IPackageQueue* = nullptr);
 	void receivePackage(Package) override;
-	Package* viewDepot() override;
+	std::vector<Package> viewDepot() override;
 	void doWork();
 	TimeOffset getProcessingDuration();
 	Time getPackageProcessingStartTime();

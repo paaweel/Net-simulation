@@ -11,24 +11,23 @@ Worker::Worker(ElementID id_, TimeOffset processingDuration_, IPackageQueue* que
 {
 	id = id_;
 	processingDuration = processingDuration_;
-	queue = queue_;
+	if (queue_ != nullptr)
+		queue = queue_;
 }
 
 void Worker::receivePackage(Package package_)
 {
 	queue->push(package_);
-	//if (queue->getQueueType == QueueType::FIFO)
-		//currentlyProcessedPackage.push_back(package_) ??
 }
 
-Package* Worker::viewDepot()
+std::vector<Package> Worker::viewDepot()
 {
 	//?
 }
 
 void Worker::doWork()
 {
-	//?
+    addToBuffer(queue->pop());
 }
 
 TimeOffset Worker::getProcessingDuration()
@@ -55,7 +54,7 @@ void sendPackage()
 {
 	
 }
-	
+
 std::vector<Package> viewSendingBuffer()
 {
 	

@@ -10,6 +10,7 @@
 
 #include<list>
 #include<algorithm>
+#include <iostream>
 #include"ramp.h"
 #include"Worker.h"
 #include"StoreHouse.h"
@@ -27,7 +28,7 @@ public:
 
 	typename std::list<T>::iterator findById(std::list<T> &l, ElementID id)
 	{
-		return std::find_if(l.begin(), l.end(), [id](const T& cls){	return (cls.getID() == id);} );
+		return std::find_if(l.begin(), l.end(), [id](const T& cls){	return (cls->getID() == id);} );
 	};
 
 	void removeById(std::list<T>&l, ElementID id)
@@ -44,9 +45,9 @@ public:
 
 };
 
-typedef Collection<Ramp> RampCollection;
-typedef Collection<Worker> WorkerCollection;
-typedef Collection<StoreHouse> StorehouseCollection;
+typedef Collection<Ramp*> RampCollection;
+typedef Collection<Worker*> WorkerCollection;
+typedef Collection<StoreHouse*> StorehouseCollection;
 
 // END COLLECTION TEMPLATE
 
@@ -59,16 +60,19 @@ private:
 	StorehouseCollection storehouses;
 
 public:
-	std::list<Ramp> getRamps() {return ramps.group;};
-	void addRamp(Ramp);
+	Factory(RampCollection r, WorkerCollection w, StorehouseCollection s) :	ramps(r), workers(w),	storehouses(s) {
+
+	}
+	std::list<Ramp*> getRamps() {return ramps.group;};
+	void addRamp(Ramp*);
 	void removeRamp(ElementID);
 
-	std::list<Worker> getWorkers() {return workers.group;};
-	void addWorker(Worker);
+	std::list<Worker*> getWorkers() {return workers.group;};
+	void addWorker(Worker*);
 	void removeWorker(ElementID);
 
-	std::list<StoreHouse> getStorehouses() {return storehouses.group;};
-	void addStorehouse(StoreHouse);
+	std::list<StoreHouse*> getStorehouses() {return storehouses.group;};
+	void addStorehouse(StoreHouse*);
 	void removeStorehouse(ElementID);
 
 	bool isConsistent();
