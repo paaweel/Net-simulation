@@ -19,7 +19,7 @@ private:
 	TimeOffset processingDuration;
 	Time packageProcessingStartTime;
 	IPackageQueue* queue;
-	std::vector<Package> currentlyProcessedPackage;
+	//std::vector<Package> currentlyProcessedPackage;
 public:
 	Worker(ElementID, TimeOffset, IPackageQueue* = nullptr);
 	void receivePackage(Package) override;

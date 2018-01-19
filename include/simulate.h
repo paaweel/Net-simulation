@@ -11,7 +11,7 @@
 
 //std::function(Factory&, TimeOffset) Have no idea what
 
-void simulate(Factory factory, TimeOffset timeOffset) {
+void simulate(Factory & factory, TimeOffset timeOffset) {
 
     auto workers = factory.getWorkers();
     auto storeHouses = factory.getStorehouses();

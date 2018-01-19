@@ -60,7 +60,7 @@ private:
 	StorehouseCollection storehouses;
 
 public:
-	Factory(RampCollection r, WorkerCollection w, StorehouseCollection s) :	ramps(r), workers(w),	storehouses(s) {
+	Factory(RampCollection r, WorkerCollection w, StorehouseCollection s) :	ramps {r}, workers {w},	storehouses {s} {
 
 	}
 	std::list<Ramp*> getRamps() {return ramps.group;};

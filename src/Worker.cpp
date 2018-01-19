@@ -27,7 +27,9 @@ std::vector<Package> Worker::viewDepot()
 
 void Worker::doWork()
 {
-    addToBuffer(queue->pop());
+    if (!queue->empty()) {
+		addToBuffer(queue->pop());
+	}
 }
 
 TimeOffset Worker::getProcessingDuration()

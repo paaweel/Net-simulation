@@ -12,7 +12,7 @@ private:
     ElementID id;
     std::vector<Package> packageDepot;
 public:
-    StoreHouse(ElementID _id) {
+    explicit StoreHouse(ElementID _id) {
         id = _id;
     }
     void receivePackage(Package p) override {
