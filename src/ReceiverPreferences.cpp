@@ -43,10 +43,12 @@ IPackageReceiver* ReceiverPreferences::drawReceiver() {
     return key[d(gen)];
 }
 
+/*
 void ReceiverPreferences::addReceiver(IPackageReceiver* newReceiver) {
     probabilities[newReceiver] = 0.2;
     redistributeProbabilityProportionally(probabilities);
 }
+*/
 
 std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() const {
     std::vector<std::pair<IPackageReceiver *, double>> pairs;
@@ -78,7 +80,7 @@ void ReceiverPreferences::setPreferences(const std::map<IPackageReceiver *, doub
         probabilities = newProbabilities;
 }
 
-void ReceiverPreferences::addReceiverWithProbability(IPackageReceiver * newReceiver, double prob) {
+void ReceiverPreferences::addReceiver(IPackageReceiver * newReceiver, double prob) {
     if (prob > 0.0 || prob <= 1.0) {
         if (!probabilities.empty()){
             redistributeProbabilityProportionally(probabilities, prob);

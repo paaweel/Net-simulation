@@ -19,8 +19,8 @@ public:
         return probabilities;
     }
     void setPreferences(const std::map<IPackageReceiver*, double> &);
-    void addReceiver(IPackageReceiver*);
-    void addReceiverWithProbability(IPackageReceiver*, double);
+    void addReceiver(IPackageReceiver*, double = 0.2);
+    //void addReceiverWithProbability(IPackageReceiver*, double);
     void removeReceiver(IPackageReceiver*);
     IPackageReceiver* drawReceiver(); //parameter double is not required, yet
     //returning vector, instead of an array

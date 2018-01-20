@@ -5,14 +5,19 @@
  *      Author: franek
  */
 
+#include <PackageQueue.h>
 #include "Worker.h"
 
-Worker::Worker(ElementID id_, TimeOffset processingDuration_, IPackageQueue* queue_)
+Worker::Worker(ElementID id_, TimeOffset processingDuration_, QueueType type, std::shared_ptr<IPackageQueue> queue_)
 {
 	id = id_;
 	processingDuration = processingDuration_;
 	if (queue_ != nullptr)
 		queue = queue_;
+	else {
+		auto queue__ = std::make_shared<PackageQueue>(type);
+		queue = queue__;
+	}
 }
 
 void Worker::receivePackage(Package package_)

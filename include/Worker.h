@@ -18,10 +18,10 @@ private:
 	ElementID id;
 	TimeOffset processingDuration;
 	Time packageProcessingStartTime;
-	IPackageQueue* queue;
+	std::shared_ptr<IPackageQueue> queue;
 	//std::vector<Package> currentlyProcessedPackage;
 public:
-	Worker(ElementID, TimeOffset, IPackageQueue* = nullptr);
+	Worker(ElementID id_, TimeOffset processingDuration_, QueueType type = QueueType::LIFO, std::shared_ptr<IPackageQueue> queue_ = nullptr);
 	void receivePackage(Package) override;
 	std::vector<Package> viewDepot() override;
 	void doWork();
