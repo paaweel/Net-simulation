@@ -27,19 +27,19 @@ public:
 	Collection(std::list<T> _group) : group(_group) {};
 
 
-	typename std::list<T>::iterator findById(std::list<T> &l, ElementID id)
+	typename std::list<T>::iterator findById(ElementID id)
 	{
-		return std::find_if(l.begin(), l.end(), [id](const T& cls){	return (cls->getID() == id);} );
+		return std::find_if(group.begin(), group.end(), [id](const T& cls){	return (cls->getID() == id);} );
 	};
 
-	void removeById(std::list<T>&l, ElementID id)
+	void removeById(ElementID id)
 	{
-		auto it = findById(l, id);
+		auto it = findById(id);
 
-		bool wasFound = (it != l.end());
+		bool wasFound = (it != group.end());
 		if (wasFound)
 		{
-			l.erase(it);
+			group.erase(it);
 		}
 	};
 
@@ -77,6 +77,17 @@ public:
 	void addStorehouse(ElementID _id);
 	void removeStorehouse(ElementID);
 	void addLink(PackageSender *sender, IPackageReceiver* receiver, double prob = 0);
+
+	RampCollection  getRampCollection() {
+		return ramps;
+	}
+	WorkerCollection getWorkerCollection() {
+		return workers;
+	}
+	StorehouseCollection getStorehouseCollection() {
+		return storehouses;
+	}
+
 
 	//bool isConsistent();
 };

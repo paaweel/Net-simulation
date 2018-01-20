@@ -15,7 +15,7 @@ void Factory::addRamp(ElementID _id, TimeOffset _to)
 
 void Factory::removeRamp(ElementID _id)
 {
-	ramps.removeById(ramps.group, _id);
+	ramps.removeById(_id);
 }
 
 void Factory::addWorker(ElementID id_, TimeOffset processingDuration_,QueueType type, std::shared_ptr<IPackageQueue> queue_)
@@ -26,7 +26,7 @@ void Factory::addWorker(ElementID id_, TimeOffset processingDuration_,QueueType 
 
 void Factory::removeWorker(ElementID _id)
 {
-	workers.removeById(workers.group,_id);
+	workers.removeById(_id);
 }
 
 void Factory::addStorehouse(ElementID _id)
@@ -37,7 +37,7 @@ void Factory::addStorehouse(ElementID _id)
 
 void Factory::removeStorehouse(ElementID _id)
 {
-	storehouses.removeById(storehouses.group,_id);
+	storehouses.removeById(_id);
 }
 /*
 bool Factory::isConsistent()
