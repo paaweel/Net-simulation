@@ -39,7 +39,7 @@ TEST(ReceiverPreferences, SumEqualsOneWhenAddingWithP) {
 
     ReceiverPreferences rp;
     rp.addReceiver(s0.get());
-    rp.addReceiverWithProbability(s1.get(),0.3);
+    rp.addReceiver(s1.get(),0.3);
     double sum = 0.0;
     auto prob = rp.getPreferences();
     for (auto m : prob) {
@@ -47,7 +47,7 @@ TEST(ReceiverPreferences, SumEqualsOneWhenAddingWithP) {
         std::cout << m.second << " " << sum << std::endl;
     }
     EXPECT_DOUBLE_EQ(sum, 1.0);
-    rp.addReceiverWithProbability(s2.get(),0.5);
+    rp.addReceiver(s2.get(),0.5);
     sum = 0.0;
     prob = rp.getPreferences();
     for (auto m : prob) {
@@ -65,12 +65,12 @@ TEST(ReceiverPreferences, addingWithProbability) {
 
     ReceiverPreferences rp;
 
-    rp.addReceiverWithProbability(s0.get(), 0.3);
+    rp.addReceiver(s0.get(), 0.3);
 
     auto prob = rp.getPreferences();
     EXPECT_DOUBLE_EQ(1.0, prob[s0.get()]);
 
-    rp.addReceiverWithProbability(s1.get(), 0.3);
+    rp.addReceiver(s1.get(), 0.3);
     prob = rp.getPreferences();
     EXPECT_DOUBLE_EQ(0.7, prob[s0.get()]);
     EXPECT_DOUBLE_EQ(0.3, prob[s1.get()]);
