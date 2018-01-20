@@ -30,9 +30,12 @@ void simulate(Factory & factory, TimeOffset timeOffset) {
             for (auto x : depot) {
                 std::cout << x.getId() << " ";
             }
-            std::cout << std::endl;
+            std::cout << std::endl; //THIS LINE IS REQUIRED
+            //without it not all ids are showed
+            //have no idea why
         }
     }
+    std::cout << std::endl;
 }
 
 #endif //NET_SIMULATION_SIMULATE_H
